@@ -116,9 +116,10 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
+    'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
-    # 'django.contrib.admindocs',
+    'django.contrib.admindocs',
+    'paypal.standard.ipn'
 )
 
 # A sample logging configuration. The only tangible logging
@@ -149,6 +150,8 @@ LOGGING = {
         },
     }
 }
+
+PAYPAL_RECEIVER_EMAIL = 'pumpingdonations@gmail.com'
 
 import dj_database_url
 DATABASES = {'default': dj_database_url.config(default='postgres://localhost')}
