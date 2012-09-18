@@ -1,6 +1,7 @@
 import datetime
 from django.db import models
 from django.contrib.auth.models import User
+from django.contrib import admin
 from paypal.standard.ipn.signals import recurring_payment
 
 # Create your models here.
@@ -15,6 +16,8 @@ class UserProfile(models.Model):
     paypal_id = models.CharField(max_length=13, blank=True)
     member_since = models.DateField(blank=True)
     member_until = models.DateField(blank=True)
+
+admin.site.register(UserProfile)
 
 def paypal_to_profile(sender, **kwargs):
     ipn_obj = sender
