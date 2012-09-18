@@ -123,6 +123,7 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
     'paypal.standard.ipn',
     'gunicorn',
+    'members',
 )
 
 # A sample logging configuration. The only tangible logging
