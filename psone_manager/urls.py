@@ -10,7 +10,7 @@ urlpatterns = patterns('',
     # url(r'^psone_manager/', include('psone_manager.foo.urls')),
 
     (r'^paypal/ipn/endpoint/', include('paypal.standard.ipn.urls')),
-    (r’^static/(?P.*)$’, ‘django.views.static.serve’, {‘document_root’: settings.STATIC_ROOT}),
+    (r'^static/(?P.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
