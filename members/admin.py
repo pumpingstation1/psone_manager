@@ -9,6 +9,7 @@ def save_payment_to_profile(modeladmin, request, queryset):
 
 class MyPayPalIPNAdmin(PayPalIPNAdmin):
     actions = [save_payment_to_profile]
+    search_fields = ["txn_id", "recurring_payment_id", 'payer_email']
 
 admin.site.register(UserProfile)
 admin.site.unregister(PayPalIPN)
