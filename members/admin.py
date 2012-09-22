@@ -8,7 +8,7 @@ def save_payment_to_profile(modeladmin, request, queryset):
         paypal_to_profile(sender)
 
 class MyPayPalIPNAdmin(PayPalIPNAdmin):
-    action = [save_payment_to_profile]
+    actions = [save_payment_to_profile]
 
 admin.site.register(UserProfile)
 admin.site.unregister(PayPalIPN)
