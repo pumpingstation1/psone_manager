@@ -20,11 +20,8 @@ class UserProfile(models.Model):
     def __unicode__(self):
         return '%s %s' % (self.first_name, self.last_name)
 
-    def is_member(self):
-        return (self.member_until - datetime.date.today()) > 0
-
     def days_left(self):
-        return self.member_until - datetime.date.today()
+        return (self.member_until - datetime.date.today()).days
 
 
 admin.site.register(UserProfile)
