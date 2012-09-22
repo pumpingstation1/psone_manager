@@ -3,7 +3,7 @@ from django.views.generic import ListView
 from .models import UserProfile
 
 class MemberSearch(ListView):
-    context_object_name = 'user_profile'
+    context_object_name = 'user_profiles'
 
     def get_queryset(self):
         query = self.request.GET.get('q')
