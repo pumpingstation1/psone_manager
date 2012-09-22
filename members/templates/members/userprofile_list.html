@@ -7,7 +7,7 @@
 </form>
 <ul>
 {% for u in user_profiles %}
-<li>{{ u.first_name }} {{ u.last_name }} - member for {{ u.days_left }} days</li>
+<li>{{ u.first_name }} {{ u.last_name }} - member for {{ u.days_left }} more days</li>
 {% empty %}
     <li> - No matching members! - </li>
 {% endfor %}
