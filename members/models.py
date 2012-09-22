@@ -17,6 +17,16 @@ class UserProfile(models.Model):
     member_since = models.DateField(blank=True)
     member_until = models.DateField(blank=True)
 
+    def __unicode__(self):
+        return '%s %s' % (self.first_name, self.last_name)
+
+    def is_member(self):
+        return (self.member_until - datetime.date.today()) > 0
+
+    def days_left(self):
+        return self.member_until - datetime.date.today()
+
+
 admin.site.register(UserProfile)
 
 def paypal_to_profile(sender, **kwargs):

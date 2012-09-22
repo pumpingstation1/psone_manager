@@ -1,3 +1,4 @@
+import datetime
 from django.db.models import Q
 from django.views.generic import ListView
 from .models import UserProfile
@@ -14,7 +15,7 @@ class MemberSearch(ListView):
                 Q(nickname__icontains=query) |
                 Q(paypal_email__icontains=query) |
                 Q(contact_email__icontains=query)
-            )
+            , member_until__gte=datetime.date.today())
         else:
             users = UserProfile.objects.filter(pk=0)
         return users
