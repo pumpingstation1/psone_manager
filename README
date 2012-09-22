@@ -7,3 +7,5 @@ Want list
 * reimbursement
 * financial reporting
 
+
+install tsaylor's django-paypal: heroku run --app psone-manager-dev pip install -e git+https://github.com/tsaylor/django-paypal.git#egg=paypal
