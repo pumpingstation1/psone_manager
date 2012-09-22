@@ -13,8 +13,8 @@ class UserProfile(models.Model):
     contact_email = models.EmailField(blank=True)
     paypal_email = models.EmailField(blank=True)
     paypal_id = models.CharField(max_length=13, blank=True)
-    member_since = models.DateField(blank=True)
-    member_until = models.DateField(blank=True)
+    member_since = models.DateField(blank=True, null=True)
+    member_until = models.DateField(blank=True, null=True)
 
     def __unicode__(self):
         return '%s %s' % (self.first_name, self.last_name)
