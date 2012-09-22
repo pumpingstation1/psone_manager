@@ -2,7 +2,7 @@ import datetime
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib import admin
-from paypal.standard.ipn.signals import recurring_payment
+from paypal.standard.ipn.signals import payment_was_successful
 
 # Create your models here.
 
@@ -31,6 +31,8 @@ admin.site.register(UserProfile)
 
 def paypal_to_profile(sender, **kwargs):
     ipn_obj = sender
+    if ipn_obj.txn_type != 'subscr_payment':
+        return
     # XXX assumption - paypal's payer id is constant for any paypal account [needs verification]
     (profile, created) = UserProfile.objects.get_or_create(paypal_id=ipn_obj.payer_id)
     profile.first_name = ipn_obj.first_name
@@ -46,4 +48,4 @@ def paypal_to_profile(sender, **kwargs):
     profile.member_until = end_date
     profile.save()
 
-recurring_payment.connect(paypal_to_profile)
+payment_was_successful.connect(paypal_to_profile)
