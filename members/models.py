@@ -33,11 +33,11 @@ def paypal_to_profile(sender, **kwargs):
         return
     # XXX assumption - paypal's payer id is constant for any paypal account [needs verification]
     (profile, created) = UserProfile.objects.get_or_create(paypal_id=ipn_obj.payer_id)
-    profile.first_name = ipn_obj.first_name
-    profile.last_name = ipn_obj.last_name
     profile.paypal_email = ipn_obj.payer_email
     payment_date = ipn_obj.payment_date
     if created:
+        profile.first_name = ipn_obj.first_name
+        profile.last_name = ipn_obj.last_name
         start_date = datetime.date(payment_date.year, payment_date.month, payment_date.day)
         profile.member_since = start_date
     end_date = datetime.date(payment_date.year, (payment_date.month+1)%12, payment_date.day)
