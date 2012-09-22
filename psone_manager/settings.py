@@ -124,6 +124,7 @@ INSTALLED_APPS = (
     'paypal.standard.ipn',
     'gunicorn',
     'members',
+    'south',
 )
 
 # A sample logging configuration. The only tangible logging
