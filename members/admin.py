@@ -1,4 +1,5 @@
 from django.contrib import admin
+from paypal.standard.ipn.models import PayPalIPN
 from paypal.standard.ipn.admin import PayPalIPNAdmin
 from .models import UserProfile
 
