@@ -11,4 +11,5 @@ class MyPayPalIPNAdmin(PayPalIPNAdmin):
     action = [save_payment_to_profile]
 
 admin.site.register(UserProfile)
-admin.site.unregister(PayPalIPN, MyPayPalIPNAdmin)
+admin.site.register(PayPalIPN)
+admin.site.register(PayPalIPN, MyPayPalIPNAdmin)
