@@ -5,7 +5,7 @@ from .models import UserProfile, paypal_to_profile
 
 def save_payment_to_profile(modeladmin, request, queryset):
     for obj in queryset.order_by('payment_date'):
-        paypal_to_profile(sender)
+        paypal_to_profile(obj)
 
 class MyPayPalIPNAdmin(PayPalIPNAdmin):
     actions = [save_payment_to_profile]
