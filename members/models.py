@@ -23,6 +23,9 @@ class UserProfile(models.Model):
     def days_left(self):
         return (self.member_until - datetime.date.today()).days
 
+    class Meta:
+        ordering = ('last_name', 'first_name')
+
 
 admin.site.register(UserProfile)
 
