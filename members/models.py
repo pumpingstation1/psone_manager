@@ -41,6 +41,8 @@ def paypal_to_profile(sender, **kwargs):
         start_date = datetime.date(payment_date.year, payment_date.month, payment_date.day)
         profile.member_since = start_date
     end_date = datetime.date(payment_date.year, (payment_date.month+1)%12, payment_date.day)
+    if payment_date.month == 12:
+        end_date = end_date.replace(year=payment_date.year+1)
     profile.member_until = end_date
     profile.save()
 
