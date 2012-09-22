@@ -1,7 +1,6 @@
 import datetime
 from django.db import models
 from django.contrib.auth.models import User
-from django.contrib import admin
 from paypal.standard.ipn.signals import payment_was_successful
 
 # Create your models here.
@@ -27,7 +26,6 @@ class UserProfile(models.Model):
         ordering = ('last_name', 'first_name')
 
 
-admin.site.register(UserProfile)
 
 def paypal_to_profile(sender, **kwargs):
     ipn_obj = sender
