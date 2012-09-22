@@ -9,7 +9,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'psone_manager.views.home', name='home'),
-    # url(r'^psone_manager/', include('psone_manager.foo.urls')),
+    url(r'^members/', include('members.urls')),
 
     (r'^paypal/ipn/endpoint/', include('paypal.standard.ipn.urls')),
     (r'^static/(.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),

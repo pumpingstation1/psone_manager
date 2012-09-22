@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form action='' method='GET'>
+    <input type='text' name='q'>
+    <input type='submit' name='Search' value='Search'>
+</form>
+<ul>
+{% for u in user_profiles %}
+    <li>{{ u.first_name }} {{ u.last_name }}</li>
+{% empty %}
+    <li> - No matching members! - </li>
+{% endfor %}
+</ul>
+{% endblock content %}
