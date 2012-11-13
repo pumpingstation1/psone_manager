@@ -1,6 +1,7 @@
 # Django settings for psone_manager project.
 
 import os
+import random
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -80,7 +81,7 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = 'zg%l5gtndq7^$1d$vo61aj(nqz0@aj%zxgcb4e)x9sbo-_bk$l'
+SECRET_KEY = "".join([random.choice("abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)") for i in range(50)])
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -156,7 +157,7 @@ LOGGING = {
     }
 }
 
-PAYPAL_RECEIVER_EMAIL = 'pumpingdonations@gmail.com'
+PAYPAL_RECEIVER_EMAIL = 'money@pumpingstationone.org'
 
 import dj_database_url
 DATABASES = {'default': dj_database_url.config(default='postgres://localhost')}
