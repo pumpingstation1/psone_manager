@@ -8,6 +8,7 @@ TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
+    ('Tim Saylor', 'tim.saylor@gmail.com'),
 )
 
 MANAGERS = ADMINS
@@ -161,3 +162,10 @@ PAYPAL_RECEIVER_EMAIL = 'money@pumpingstationone.org'
 
 import dj_database_url
 DATABASES = {'default': dj_database_url.config(default='postgres://localhost')}
+
+ses_credentials = os.environ.get('SES_CREDENTIALS')
+if ses_credentials:
+    EMAIL_HOST_USER, EMAIL_HOST_PASSWORD = ses_credentials.split(':')
+    EMAIL_HOST = 'email-smtp.us-east-1.amazonaws.com'
+    EMAIL_PORT = 25
+    EMAIL_USE_TLS = True

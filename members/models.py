@@ -1,7 +1,8 @@
 import datetime
+from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import User
-from paypal.standard.ipn.signals import payment_was_successful
+from paypal.standard.ipn.signals import payment_was_successful, payment_was_flagged
 
 # Create your models here.
 
@@ -13,6 +14,7 @@ class UserProfile(models.Model):
     contact_email = models.EmailField(blank=True)
     paypal_email = models.EmailField(blank=True)
     paypal_id = models.CharField(max_length=13, blank=True)
+    subscr_id = models.CharField(max_length=19, blank=True)
     member_since = models.DateField(blank=True, null=True)
     member_until = models.DateField(blank=True, null=True)
 
@@ -47,3 +49,13 @@ def paypal_to_profile(sender, **kwargs):
     profile.save()
 
 payment_was_successful.connect(paypal_to_profile)
+
+def email_admins(sender, **kwargs):
+    send_mail('[psone] flagged payment', 'A payment was flagged, go investigate.  http://psone-manager.herokuapp.com/admin/', 'tim.saylor@gmail.com',
+                [a[1] for a in settings.ADMINS], fail_silently=False)
+
+payment_was_flagged.connect(email_admins)
+
+
+
+#class Membership(models.Model):
