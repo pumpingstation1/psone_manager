@@ -33,6 +33,8 @@ def paypal_to_profile(sender, **kwargs):
     ipn_obj = sender
     if ipn_obj.txn_type != 'subscr_payment':
         return
+    if ipn_obj.flag:
+        return
     # XXX assumption - paypal's payer id is constant for any paypal account [needs verification]
     (profile, created) = UserProfile.objects.get_or_create(paypal_id=ipn_obj.payer_id)
     profile.paypal_email = ipn_obj.payer_email
@@ -48,13 +50,13 @@ def paypal_to_profile(sender, **kwargs):
     profile.member_until = end_date
     profile.save()
 
-payment_was_successful.connect(paypal_to_profile)
+payment_was_successful.connect(paypal_to_profile, dispatch_uid='paypal_to_profile_unique_string')
 
 def email_admins(sender, **kwargs):
     send_mail('[psone] flagged payment', 'A payment was flagged, go investigate.  http://psone-manager.herokuapp.com/admin/', 'tim.saylor@gmail.com',
                 [a[1] for a in settings.ADMINS], fail_silently=False)
 
-payment_was_flagged.connect(email_admins)
+payment_was_flagged.connect(email_admins, dispatch_uid='email_admins_unique_string')
 
 
 
